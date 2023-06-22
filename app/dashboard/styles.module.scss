@@ -1,0 +1,62 @@
+.header {
+  height: 64px;
+  width: 100%;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: white;
+  box-shadow: 0 8px 6px -2px rgba(0, 0, 0, 0.05);
+
+  & :global(.ant-typography) {
+    color: #389d8e;
+  }
+}
+
+.content {
+  min-height: calc(100vh - 64px);
+  width: 100%;
+  margin-top: 64px;
+  padding: 50px;
+  background-color: #f7f7f8;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.panel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  & :global(.ant-typography) {
+    color: #182d48;
+  }
+
+  & button {
+    color: #182d48;
+
+    & svg {
+      fill: #389d8e;
+    }
+
+    &:hover:global(.ant-btn) {
+      color: #389d8e;
+      border-color: #389d8e;
+
+      & svg {
+        fill: #389d8e;
+      }
+    }
+  }
+}

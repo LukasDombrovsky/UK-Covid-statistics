@@ -1,49 +1,42 @@
-'use client';
+import DashboardPage from './dashboard/page';
 
-import Image from 'next/image';
-import styles from './page.module.scss';
-import { Col, Layout, Row, Space, Typography } from 'antd';
+async function getData(areaType: string) {
+  const filters = [`areaType=${areaType}`, `date=2023-06-22`],
+    structure = {
+      name: 'areaName',
+      cumulativeCases: 'cumCasesByPublishDate',
+      date: 'date',
+    };
 
-const { Title } = Typography;
+  const apiParams = `filters=${filters.join(';')}&structure=${JSON.stringify(
+    structure
+  )}`;
+  const encodedParams = encodeURI(apiParams);
 
-const { Header, Content } = Layout;
-
-const headerStyle: React.CSSProperties = {
-  textAlign: 'center',
-  color: '#fff',
-  height: 64,
-  paddingInline: 50,
-  lineHeight: '64px',
-  backgroundColor: '#7dbcea',
-};
-
-const contentStyle: React.CSSProperties = {
-  textAlign: 'center',
-  minHeight: 120,
-  lineHeight: '120px',
-  color: '#fff',
-  backgroundColor: '#108ee9',
-};
-
-export default function Home() {
-  return (
-    // <Space direction='vertical' style={{ width: '100%' }} size={[0, 48]}>
-    <Layout>
-      <Header className={styles.header}>
-        <Title level={4}>App title</Title>
-      </Header>
-      <Content className={styles.content}>
-        <Row>
-          <Col span={24}>
-            <Title level={4}>Page title</Title>
-          </Col>
-        </Row>
-        <Row>
-          <Col span={12}>col-12</Col>
-          <Col span={12}>col-12</Col>
-        </Row>
-      </Content>
-    </Layout>
-    // </Space>
+  const res = await fetch(
+    `https://api.coronavirus.data.gov.uk/v1/data?${encodedParams}`
   );
+
+  // Recommendation: handle errors
+  if (!res.ok) {
+    // This will activate the closest `error.js` Error Boundary
+    throw new Error('Failed to fetch data');
+  }
+
+  return res.json();
+}
+
+export default async function Home() {
+  // Get 5 areas with most cumulative cases
+  let resp = await getData('region');
+  const cumCasesByAreas = resp.data
+    .sort(
+      (a: { cumulativeCases: number }, b: { cumulativeCases: number }) =>
+        b.cumulativeCases - a.cumulativeCases
+    )
+    .slice(0, 5);
+
+  console.log(cumCasesByAreas);
+
+  return <DashboardPage data={[cumCasesByAreas]} />;
 }

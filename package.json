@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@ant-design/icons": "^5.1.4",
     "@antv/g2": "^5.0.13",
     "@trpc/client": "^10.31.0",
     "@trpc/server": "^10.31.0",

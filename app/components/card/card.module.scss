@@ -1,0 +1,24 @@
+.card {
+  & :global(.ant-card-head-title) {
+    font-weight: bold;
+  }
+}
+.chart {
+  width: 100%;
+  min-height: 200px;
+  margin-top: 50px;
+}
+
+.actions {
+  padding: 0 24px;
+}
+
+.comment {
+  font-size: 20px;
+
+  &:hover {
+    cursor: pointer;
+    fill: #389d8e;
+    color: #389d8e;
+  }
+}
