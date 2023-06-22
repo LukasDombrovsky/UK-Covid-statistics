@@ -33,8 +33,6 @@ export default async function Home() {
     )
     .slice(0, 5);
 
-  console.log(cumCasesByAreas);
-
   // Get days with most new cases
   resp = await getData([`areaType=nation`, `areaName=england`], {
     date: 'date',
@@ -46,8 +44,6 @@ export default async function Home() {
         b.newCases - a.newCases
     )
     .slice(0, 5);
-
-  console.log(newCasesByDays);
 
   return <DashboardPage data={[cumCasesByAreas, newCasesByDays]} />;
 }

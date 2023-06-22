@@ -46,7 +46,7 @@ const DashboardPage: React.FC<DashboardPageProps> = (
         <Col xs={24} lg={12}>
           <Card>
             <ChartLoader
-              data={data[0]}
+              data={data && data.length && data[0]}
               chartId='chart1'
               columnXname='name'
               columnYname='cumulativeCases'
@@ -56,7 +56,7 @@ const DashboardPage: React.FC<DashboardPageProps> = (
         <Col xs={24} lg={12}>
           <Card>
             <ChartLoader
-              data={data[1]}
+              data={data && data.length > 1 && data[1]}
               chartId='chart2'
               columnXname='date'
               columnYname='newCases'
