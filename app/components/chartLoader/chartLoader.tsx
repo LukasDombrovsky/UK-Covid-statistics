@@ -48,7 +48,7 @@ const ChartLoader: React.FC<ChartLoaderProps> = ({
 
       chart.render();
     });
-  }, [data, chartId]);
+  }, [data, chartId, columnYname, chartType, columnXname]);
 
   return <div id={chartId} style={{ height: '500px' }} />;
 };
