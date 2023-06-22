@@ -11,6 +11,7 @@ import CircleCounter from '../components/circleCounter/circleCount';
 import Card from '../components/card/card';
 import styles from './styles.module.scss';
 import DashboardLayout from './layout';
+import ChartLoader from '../components/chartLoader/chartLoader';
 
 const { Title } = Typography;
 
@@ -43,10 +44,25 @@ const DashboardPage: React.FC<DashboardPageProps> = (
           </Space>
         </Col>
         <Col xs={24} lg={12}>
-          <Card>This is content</Card>
+          <Card>
+            <ChartLoader
+              data={data[0]}
+              chartId='chart1'
+              columnXname='name'
+              columnYname='cumulativeCases'
+            />
+          </Card>
         </Col>
         <Col xs={24} lg={12}>
-          <Card>This is content</Card>
+          <Card>
+            <ChartLoader
+              data={data[1]}
+              chartId='chart2'
+              columnXname='date'
+              columnYname='newCases'
+              chartType='pie'
+            />
+          </Card>
         </Col>
       </Row>
     </DashboardLayout>

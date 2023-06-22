@@ -1,13 +1,7 @@
+// import '@antv/g2/lib/index.css';
 import DashboardPage from './dashboard/page';
 
-async function getData(areaType: string) {
-  const filters = [`areaType=${areaType}`, `date=2023-06-22`],
-    structure = {
-      name: 'areaName',
-      cumulativeCases: 'cumCasesByPublishDate',
-      date: 'date',
-    };
-
+async function getData(filters: any[], structure: any) {
   const apiParams = `filters=${filters.join(';')}&structure=${JSON.stringify(
     structure
   )}`;
@@ -28,7 +22,10 @@ async function getData(areaType: string) {
 
 export default async function Home() {
   // Get 5 areas with most cumulative cases
-  let resp = await getData('region');
+  let resp = await getData([`areaType=region`, `date=2023-06-22`], {
+    name: 'areaName',
+    cumulativeCases: 'cumCasesByPublishDate',
+  });
   const cumCasesByAreas = resp.data
     .sort(
       (a: { cumulativeCases: number }, b: { cumulativeCases: number }) =>
@@ -38,5 +35,19 @@ export default async function Home() {
 
   console.log(cumCasesByAreas);
 
-  return <DashboardPage data={[cumCasesByAreas]} />;
+  // Get days with most new cases
+  resp = await getData([`areaType=nation`, `areaName=england`], {
+    date: 'date',
+    newCases: 'newCasesByPublishDate',
+  });
+  const newCasesByDays = resp.data
+    .sort(
+      (a: { newCases: number }, b: { newCases: number }) =>
+        b.newCases - a.newCases
+    )
+    .slice(0, 5);
+
+  console.log(newCasesByDays);
+
+  return <DashboardPage data={[cumCasesByAreas, newCasesByDays]} />;
 }
