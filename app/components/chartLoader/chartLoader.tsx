@@ -5,7 +5,7 @@ interface ChartLoaderProps {
   chartId: string;
   columnXname: string;
   columnYname: string;
-  chartType?: string;
+  chartCordinate?: string;
 }
 
 const ChartLoader: React.FC<ChartLoaderProps> = ({
@@ -13,7 +13,7 @@ const ChartLoader: React.FC<ChartLoaderProps> = ({
   chartId,
   columnXname,
   columnYname,
-  chartType,
+  chartCordinate,
 }) => {
   useEffect(() => {
     import('@antv/g2').then(({ Chart }) => {
@@ -29,28 +29,22 @@ const ChartLoader: React.FC<ChartLoaderProps> = ({
         nice: true,
       });
 
-      if (chartType === 'pie') {
+      if (chartCordinate === 'theta') {
         chart.coordinate('theta', {
           radius: 0.75,
         });
       }
 
-      chart.tooltip({
-        showMarkers: false,
-      });
-
-      // Use adjust() instead of position() for bar chart
       chart
         .interval()
         .position(`${columnXname}*${columnYname}`)
-        .adjust('stack')
         .color(columnXname);
 
       chart.render();
     });
-  }, [data, chartId, columnYname, chartType, columnXname]);
+  }, [data, chartId, columnYname, chartCordinate, columnXname]);
 
-  return <div id={chartId} style={{ height: '500px' }} />;
+  return <div id={chartId} />;
 };
 
 export default ChartLoader;

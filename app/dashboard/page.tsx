@@ -44,7 +44,7 @@ const DashboardPage: React.FC<DashboardPageProps> = (
           </Space>
         </Col>
         <Col xs={24} lg={12}>
-          <Card>
+          <Card title='5 areas with most cumulative cases'>
             <ChartLoader
               data={data && data.length && data[0]}
               chartId='chart1'
@@ -54,13 +54,13 @@ const DashboardPage: React.FC<DashboardPageProps> = (
           </Card>
         </Col>
         <Col xs={24} lg={12}>
-          <Card>
+          <Card title='5 days with most new cases'>
             <ChartLoader
               data={data && data.length > 1 && data[1]}
               chartId='chart2'
               columnXname='date'
               columnYname='newCases'
-              chartType='pie'
+              chartCordinate='theta'
             />
           </Card>
         </Col>

@@ -1,4 +1,3 @@
-// import '@antv/g2/lib/index.css';
 import DashboardPage from './dashboard/page';
 
 async function getData(filters: any[], structure: any) {

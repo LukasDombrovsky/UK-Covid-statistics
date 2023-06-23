@@ -5,15 +5,16 @@ import { CommentOutlined } from '@ant-design/icons';
 
 export interface CardProps {
   children?: React.ReactNode;
+  title: string;
 }
 
 const Card: React.FC<CardProps> = (props: CardProps) => {
-  const { children } = props;
+  const { children, title } = props;
 
   return (
     <AntdCard
       className={styles.card}
-      title='Chart title'
+      title={title}
       bordered={false}
       actions={[
         <Row
