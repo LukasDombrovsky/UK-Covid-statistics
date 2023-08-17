@@ -4,9 +4,8 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'Simple Chart App',
-  description:
-    'Simple Chart application - ReactJs | Next.js | Ant Design | AntV',
+  title: 'UK Covid statistics',
+  description: 'UK Covid statistics - ReactJs | Next.js | Ant Design | G2',
 };
 
 export default function RootLayout({
