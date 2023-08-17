@@ -14,7 +14,7 @@ const DashboardLayout: React.FC<{ children: React.ReactNode }> = (props) => {
   return (
     <Layout>
       <Header className={styles.header}>
-        <Title level={4}>App title</Title>
+        <Title level={4}>UK Covid statistics</Title>
       </Header>
       <Content className={styles.content}>{children}</Content>
     </Layout>

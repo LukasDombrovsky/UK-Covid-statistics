@@ -28,7 +28,9 @@ const DashboardPage: React.FC<DashboardPageProps> = (
     <DashboardLayout>
       <Row gutter={[16, 12]} style={{ width: '100%', maxWidth: '1200px' }}>
         <Col span={24} className={styles.panel}>
-          <Title level={4}>Page title</Title>
+          <Title level={4} className={styles.title}>
+            Statistics
+          </Title>
           <Space wrap>
             <Button>
               Export to PDF <DownloadOutlined />

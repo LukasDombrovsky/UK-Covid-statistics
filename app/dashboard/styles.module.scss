@@ -8,6 +8,7 @@
   justify-content: flex-start;
   background-color: white;
   box-shadow: 0 8px 6px -2px rgba(0, 0, 0, 0.05);
+  z-index: 10;
 
   & :global(.ant-typography) {
     color: #389d8e;
@@ -19,7 +20,8 @@
   width: 100%;
   margin-top: 64px;
   padding: 50px;
-  background-color: #f7f7f8;
+  background-color: #537c9d;
+  background: linear-gradient(135deg, #537c9d, #2a020e);
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -58,5 +60,9 @@
         fill: #389d8e;
       }
     }
+  }
+
+  .title {
+    color: white;
   }
 }
